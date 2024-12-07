@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, Camera, Car, AlertTriangle, Wrench, FileText } from 'lucide-react'
+import Link from 'next/link'
 
 export function Sidebar() {
   return (
@@ -13,10 +14,12 @@ export function Sidebar() {
       </div>
       <nav>
         <Button variant="ghost" className="w-full justify-start mb-2">
-          <LayoutDashboard className="mr-2 h-4 w-4" /> Панель управления
+            <LayoutDashboard className="mr-2 h-4 w-4" /> Панель управления
         </Button>
         <Button variant="ghost" className="w-full justify-start mb-2">
-          <Camera className="mr-2 h-4 w-4" /> Наблюдение
+          <Link href="\surveillance">
+              <Camera className="mr-2 h-4 w-4" /> Наблюдение
+          </Link>
         </Button>
         <Button variant="ghost" className="w-full justify-start mb-2">
           <Car className="mr-2 h-4 w-4" /> Парковка
