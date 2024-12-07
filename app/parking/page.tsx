@@ -8,7 +8,7 @@ export default function Parking() {
   const violationDetails = {
     violationTime: "10:09",
     violationDate: "08.12.24",
-    carRoute: "Н/о",
+    carRoute: "Н/У",
     carNumber: "А777АА 123",
     location: "улица Воровского, 143/1, Фестивальный микрорайон, Краснодар, 350053",
     violationType: "Проезд на красный сигнал светофора",

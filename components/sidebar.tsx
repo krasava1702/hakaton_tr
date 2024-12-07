@@ -28,15 +28,21 @@ export function Sidebar() {
           <Car className="mr-2 h-4 w-4" /> Парковка
         </Button>
       </Link>
+      <Link href="\accidents">
         <Button variant="ghost" className="w-full justify-start mb-2">
           <AlertTriangle className="mr-2 h-4 w-4" /> Происшествия
         </Button>
+      </Link>
+      <Link href="\maintenance">
         <Button variant="ghost" className="w-full justify-start mb-2">
-          <Wrench className="mr-2 h-4 w-4" /> Обслуживание
+          <Wrench className="mr-2 h-4 w-4" /> Реагирование
         </Button>
-        <Button variant="ghost" className="w-full justify-start">
-          <FileText className="mr-2 h-4 w-4" /> Отчеты граждан
+      </Link>
+      <Link href="\citizen-report">
+        <Button variant="ghost" className="w-full justify-start mb-2">
+          <FileText className="mr-2 h-4 w-4" /> Жалобы от граждан
         </Button>
+      </Link>
       </nav>
     </aside>
   )
