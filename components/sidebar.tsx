@@ -13,17 +13,21 @@ export function Sidebar() {
         </div>
       </div>
       <nav>
+      <Link href="/">
         <Button variant="ghost" className="w-full justify-start mb-2">
-            <LayoutDashboard className="mr-2 h-4 w-4" /> Панель управления
+          <LayoutDashboard className="mr-2 h-4 w-4" /> Панель управления
         </Button>
+      </Link>
+      <Link href="\surveillance">
         <Button variant="ghost" className="w-full justify-start mb-2">
-          <Link href="\surveillance">
               <Camera className="mr-2 h-4 w-4" /> Наблюдение
-          </Link>
         </Button>
+      </Link>
+      <Link href="\parking">
         <Button variant="ghost" className="w-full justify-start mb-2">
           <Car className="mr-2 h-4 w-4" /> Парковка
         </Button>
+      </Link>
         <Button variant="ghost" className="w-full justify-start mb-2">
           <AlertTriangle className="mr-2 h-4 w-4" /> Происшествия
         </Button>

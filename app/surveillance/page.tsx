@@ -1,145 +1,69 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
+import { Sidebar } from "@/components/sidebar"
+import { TopBar } from "@/components/top-bar"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { AlertCircle, Car, CloudDrizzle, Grid, Lock, Settings, UserCircle, Wrench } from 'lucide-react'
-import Image from "next/image"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export default function SurveillanceDashboard() {
+export default function Surveillance() {
+  const cameras = [
+    { id: "#0192", area: "NH/05", status: "Не в сети" },
+    { id: "#0155", area: "NH/03", status: "В сети" },
+    { id: "#0123", area: "NH/23", status: "В сети" },
+    { id: "#0153", area: "NH/02", status: "Не в сети" },
+    { id: "#0245", area: "NH/12", status: "В сети" },
+    { id: "#0504", area: "NH/14", status: "В сети" },
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-950">
-      <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 p-4 border-r border-gray-800">
-          <div className="mb-8 text-center">
-            <div className="relative w-24 h-24 mx-auto mb-2">
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-gray-700">
-                <Image
-                  src="/placeholder.svg?height=96&width=96"
-                  alt="Профиль"
-                  width={96}
-                  height={96}
-                  className="object-cover"
-                />
-              </div>
-              <span className="absolute bottom-0 right-0 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm">
-                2
-              </span>
-            </div>
-            <h3 className="text-white font-medium">Сотрудник дорожной полиции</h3>
-          </div>
-          <nav className="space-y-2">
-            <Button variant="ghost" className="w-full justify-start text-gray-400">
-              <Grid className="mr-2 h-4 w-4" />
-              Панель управления
-            </Button>
-            <Button variant="secondary" className="w-full justify-start bg-gray-800">
-              <Settings className="mr-2 h-4 w-4" />
-              Наблюдение
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-400">
-              <Car className="mr-2 h-4 w-4" />
-              Парковка
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-400">
-              <AlertCircle className="mr-2 h-4 w-4" />
-              Происшествия
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-400">
-              <Wrench className="mr-2 h-4 w-4" />
-              Обслуживание
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-400">
-              <UserCircle className="mr-2 h-4 w-4" />
-              Отчет граждан
-            </Button>
-          </nav>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-6">
-          <div className="flex justify-between items-center mb-6">
+    <div className="flex h-screen bg-gray-900 text-white">
+      <Sidebar />
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <TopBar />
+        <main className="flex-1 p-4 overflow-auto">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold">Видеонаблюдение</h2>
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-semibold text-white">НАБЛЮДЕНИЕ</h1>
-              <Select defaultValue="central-market">
-                <SelectTrigger className="w-[180px] bg-gray-800 border-gray-700 text-white">
-                  <SelectValue placeholder="Выберите область" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="central-market">ЦЕНТРАЛЬНЫЙ РЫНОК</SelectItem>
-                  <SelectItem value="north-market">СЕВЕРНЫЙ РЫНОК</SelectItem>
-                  <SelectItem value="south-market">ЮЖНЫЙ РЫНОК</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex items-center gap-4 text-gray-400">
-              <span>11 августа 2023 9:00</span>
               <div className="flex items-center gap-2">
-                <CloudDrizzle className="h-4 w-4" />
-                <span>+24°C</span>
+                <span>Район</span>
+                <Select defaultValue="central">
+                  <SelectTrigger className="w-[180px] bg-gray-800 border-gray-700">
+                    <SelectValue placeholder="Select area" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="central">Центральный</SelectItem>
+                    <SelectItem value="north">Западный</SelectItem>
+                    <SelectItem value="south">Прикубанский</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="flex items-center gap-2">
-                <Settings className="h-4 w-4" />
-                <span>5 м/с</span>
+              <div className="flex gap-8 text-sm text-gray-400">
+                <div>Все камеры: 55</div>
+                <div>Активные камеры: 35</div>
+                <div>Неактивные камеры: 20</div>
               </div>
-              <Lock className="h-4 w-4" />
             </div>
           </div>
-
-          <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
-            <div className="bg-gray-800 rounded-lg px-4 py-2">
-              <span className="text-gray-400">Всего камер:</span>{" "}
-              <span className="text-white">55</span>
-            </div>
-            <div className="bg-gray-800 rounded-lg px-4 py-2">
-              <span className="text-gray-400">Активные камеры:</span>{" "}
-              <span className="text-green-500">35</span>
-            </div>
-            <div className="bg-gray-800 rounded-lg px-4 py-2">
-              <span className="text-gray-400">Неактивные камеры:</span>{" "}
-              <span className="text-red-500">20</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <Card key={i} className="bg-gray-900 border-gray-800">
-                <CardContent className="p-0 relative">
-                  <Image
-                    src="/placeholder.svg?height=200&width=400"
-                    alt={`Камера ${i + 1}`}
-                    width={400}
-                    height={200}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                  <div className="absolute top-2 right-2">
-                    <span className="inline-flex items-center rounded-full bg-gray-900/80 px-2 py-1 text-xs text-white">
-                      Кам 0{i + 1}
-                    </span>
-                  </div>
-                  <div className="p-3 flex justify-between items-center">
-                    <div>
-                      <div className="text-sm text-gray-400">
-                        Номер камеры: #0{i + 1}52
-                      </div>
-                      <div className="text-sm text-gray-400">Область: NH{i + 1}5</div>
-                      <div className="text-sm">
-                        Статус:{" "}
-                        <span className={i % 2 === 0 ? "text-green-500" : "text-red-500"}>
-                          {i % 2 === 0 ? "В сети" : "Не в сети"}
-                        </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cameras.map((camera) => (
+              <Card key={camera.id} className="bg-gray-800 border-gray-700">
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-gray-700 relative">
+                    <img
+                      src="/placeholder.svg?height=200&width=400"
+                      alt={`Camera ${camera.id}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-50 px-2 py-1 rounded text-xs">
+                      Кам {camera.id}
+                    </div>
+                    <div className="absolute bottom-2 left-2 flex items-center gap-2">
+                      <div className="text-xs">Область: {camera.area}</div>
+                      <div className={`text-xs ${camera.status === 'В сети' ? 'text-green-400' : 'text-red-400'}`}>                      
+                      Статус: {camera.status}
                       </div>
                     </div>
-                    <Button variant="secondary" size="sm">
+                    <button className="absolute bottom-2 right-2 bg-white bg-opacity-10 hover:bg-opacity-20 px-3 py-1 rounded text-xs">
                       Просмотр
-                    </Button>
+                    </button>
                   </div>
                 </CardContent>
               </Card>
@@ -150,4 +74,3 @@ export default function SurveillanceDashboard() {
     </div>
   )
 }
-
