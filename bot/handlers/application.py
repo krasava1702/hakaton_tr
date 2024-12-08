@@ -6,7 +6,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 
 from systems.get_addres import get_address
-from keyboards.application import Application as ApplicationData, confirm_text, confirm_photo, confirm_geo
+from keyboards.application import Application as ApplicationData, confirm_text, confirm_photo, confirm_geo, \
+    confirm_phone
 from utils.mini_local_memory import LocalMemory
 from utils.states import Application
 
@@ -69,7 +70,7 @@ async def application_phone(message: Message, state: FSMContext):
         "Ваше сообщение:\n"
         f"{text}\n\n"
         "Если всё в порядке, то подтвердите отправку, если нет, то нажмите повторить",
-        reply_markup=confirm_text
+        reply_markup=confirm_phone
     )
 
 @router.callback_query(Application.confirm_phone, ApplicationData.filter())
@@ -107,6 +108,7 @@ async def application_confirm_photo(call: CallbackQuery, callback_data: Applicat
         case "confirm_photo":
 
             # --- логика
+            await state.update_data(category=0)
 
             await state.set_state(Application.geo)
             await call.message.answer(

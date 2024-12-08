@@ -12,6 +12,14 @@ confirm_text = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ])
 
+confirm_phone = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_phone").pack()),
+        InlineKeyboardButton(text="Повторить", callback_data=Application(action="replay_phone").pack())
+    ]
+])
+
+
 confirm_photo = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_photo").pack()),
