@@ -7,14 +7,14 @@ class Application(CallbackData, prefix="application"):
 
 confirm_text = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_text").pack()),
+        InlineKeyboardButton(text="Подтвердить", callback_data=Application(action="confirm_text").pack()),
         InlineKeyboardButton(text="Повторить", callback_data=Application(action="replay_text").pack())
     ]
 ])
 
 confirm_phone = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_phone").pack()),
+        InlineKeyboardButton(text="Подтвердить", callback_data=Application(action="confirm_phone").pack()),
         InlineKeyboardButton(text="Повторить", callback_data=Application(action="replay_phone").pack())
     ]
 ])
@@ -22,14 +22,14 @@ confirm_phone = InlineKeyboardMarkup(inline_keyboard=[
 
 confirm_photo = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_photo").pack()),
+        InlineKeyboardButton(text="Подтвердить", callback_data=Application(action="confirm_photo").pack()),
         InlineKeyboardButton(text="Повторить", callback_data=Application(action="replay_photo").pack())
     ]
 ])
 
 confirm_geo = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Всё правильно", callback_data=Application(action="confirm_geo").pack()),
+        InlineKeyboardButton(text="Подтвердить", callback_data=Application(action="confirm_geo").pack()),
         InlineKeyboardButton(text="Повторить", callback_data=Application(action="replay_geo").pack())
     ]
 ])

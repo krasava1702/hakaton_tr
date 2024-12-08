@@ -13,7 +13,13 @@ from utils.states import Application
 
 router = Router()
 
-@router.message(Command("application"))
+@router.message(Command("cancel"))
+async def cancel(message: Message, state: FSMContext):
+    await state.clear()
+    await message.answer("Создание заявки сброшено")
+
+
+@router.message(Command("report"))
 async def application(message: Message, state: FSMContext):
     await state.set_state(Application.text)
     await message.reply(
@@ -25,7 +31,7 @@ async def application(message: Message, state: FSMContext):
 @router.message(Application.text, F.text)
 async def application_text(message: Message, state: FSMContext):
     text = message.text
-    if not 10 < len(text) < 200:
+    if not 1 < len(text) < 200:
         await message.reply("Простите, сообщение слишком короткое, либо слишком большое! Попробуйте снова")
         return
 
@@ -35,7 +41,7 @@ async def application_text(message: Message, state: FSMContext):
         text=
         "Ваше сообщение:\n"
         f"{text}\n\n"
-        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите повторить",
+        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите «Повторить»",
         reply_markup=confirm_text
     )
 
@@ -44,7 +50,7 @@ async def application_confirm_text(call: CallbackQuery, callback_data: Applicati
     await call.answer()
     match callback_data.action:
         case "confirm_text":
-            await state.set_state(Application.photo)
+            await state.set_state(Application.phone)
             await call.message.answer(
                 text=
                 "Пожалуйста, отправьте свой номер телефона сообщением в формате 8xxxxxxxxxx"
@@ -56,7 +62,7 @@ async def application_confirm_text(call: CallbackQuery, callback_data: Applicati
                 "Пожалуйста, опишите ситуацию, отправив сообщение"
             )
 
-@router.message(Application.photo, F.text)
+@router.message(Application.phone, F.text)
 async def application_phone(message: Message, state: FSMContext):
     text = message.text
     if not text.isdigit():
@@ -69,7 +75,7 @@ async def application_phone(message: Message, state: FSMContext):
         text=
         "Ваше сообщение:\n"
         f"{text}\n\n"
-        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите повторить",
+        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите «Повторить»",
         reply_markup=confirm_phone
     )
 
@@ -97,7 +103,7 @@ async def application_photo(message: Message, state: FSMContext):
     await message.answer_photo(
         photo=message.photo[-1].file_id,
         caption=
-        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите повторить",
+        "Если всё в порядке, то подтвердите отправку, если нет, то нажмите «Повторить»",
         reply_markup=confirm_photo
     )
 

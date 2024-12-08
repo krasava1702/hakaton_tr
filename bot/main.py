@@ -7,6 +7,7 @@ from dotenv import dotenv_values
 
 from utils.mini_local_memory import LocalMemory
 from tools.get_full_path import full_path
+from utils.init_commands import set_commands
 
 from handlers import application, hi
 
@@ -33,6 +34,7 @@ async def main():
         hi.router,
         application.router,
     )
+    await set_commands(bot)
     await bot.delete_webhook(drop_pending_updates=True)
 
     await dp.start_polling(bot)
