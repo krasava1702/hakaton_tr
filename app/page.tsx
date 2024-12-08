@@ -15,7 +15,7 @@ export default function Dashboard() {
         <TopBar />
         <main className="flex-1 p-4 overflow-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 h-[calc(100vh-12rem)]">
               <MapView />
             </div>
             <div>
@@ -35,4 +35,3 @@ export default function Dashboard() {
     </div>
   )
 }
-
